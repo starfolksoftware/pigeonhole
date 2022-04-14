@@ -3,9 +3,9 @@
 namespace StarfolkSoftware\Pigeonhole\Actions;
 
 use Illuminate\Support\Facades\Validator;
+use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
 use StarfolkSoftware\Pigeonhole\Pigeonhole;
-use StarfolkSoftware\Pigeonhole\Category;
 
 class UpdateCategory implements UpdatesCategories
 {

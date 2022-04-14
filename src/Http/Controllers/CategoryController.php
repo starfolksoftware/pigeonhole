@@ -2,11 +2,11 @@
 
 namespace StarfolkSoftware\Pigeonhole\Http\Controllers;
 
+use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\CreatesCategories;
 use StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
 use StarfolkSoftware\Pigeonhole\Pigeonhole;
-use StarfolkSoftware\Pigeonhole\Category;
 
 class CategoryController extends Controller
 {

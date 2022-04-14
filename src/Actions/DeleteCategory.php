@@ -2,9 +2,9 @@
 
 namespace StarfolkSoftware\Pigeonhole\Actions;
 
+use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories;
 use StarfolkSoftware\Pigeonhole\Pigeonhole;
-use StarfolkSoftware\Pigeonhole\Category;
 
 class DeleteCategory implements DeletesCategories
 {
