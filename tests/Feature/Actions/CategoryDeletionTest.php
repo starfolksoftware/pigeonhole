@@ -1,7 +1,7 @@
 <?php
 
-use StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories;
 use StarfolkSoftware\Pigeonhole\Category;
+use StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {
