@@ -5,7 +5,7 @@ namespace StarfolkSoftware\Pigeonhole\Contracts;
 interface CreatesCategories
 {
     /**
-     * Create a new tax.
+     * Create a new category.
      *
      * @param  mixed  $user
      * @param  array  $data
