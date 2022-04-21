@@ -66,7 +66,7 @@ class Category extends Model
 
     /**
      * Scope query with all the given types.
-     * 
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param array $types
      * @return \Illuminate\Database\Eloquent\Builder
@@ -78,7 +78,7 @@ class Category extends Model
 
     /**
      * Scope query with the given type.
-     * 
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $type
      * @return \Illuminate\Database\Eloquent\Builder
