@@ -8,21 +8,21 @@ beforeAll(function () {
     \StarfolkSoftware\Pigeonhole\Pigeonhole::supportsTeams(false);
 });
 
-it('can update a tax', function () {
+it('can update a category', function () {
     $updatesCategories = app(UpdatesCategories::class);
 
     $user = TestUser::first();
 
-    $tax = Category::factory()->create();
+    $category = Category::factory()->create();
 
-    $tax = $updatesCategories(
+    $category = $updatesCategories(
         $user,
-        $tax,
+        $category,
         [
             'name' => 'Category',
         ]
     );
 
-    expect($tax->refresh())
+    expect($category->refresh())
         ->name->toBe('Category');
 });

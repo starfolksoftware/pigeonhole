@@ -7,11 +7,11 @@ use StarfolkSoftware\Pigeonhole\Category;
 interface DeletesCategories
 {
     /**
-     * Delete an existing tax.
+     * Delete an existing category.
      *
      * @param  mixed  $user
-     * @param  \StarfolkSoftware\Pigeonhole\Category  $tax
+     * @param  \StarfolkSoftware\Pigeonhole\Category  $category
      * @return void
      */
-    public function __invoke($user, Category $tax);
+    public function __invoke($user, Category $category);
 }

@@ -12,6 +12,7 @@ test('category can be created', function () {
 
     $response = actingAs($user)->post(route('categories.store'), [
         'name' => 'Category',
+        'type' => 'product',
         'redirect' => '/redirect/path',
     ]);
 
@@ -19,7 +20,14 @@ test('category can be created', function () {
 
     $this->assertDatabaseHas('categories', [
         'name' => 'Category',
+        'type' => 'product',
     ]);
+
+    expect(Category::count())->toEqual(1);
+
+    expect(Category::ofType('product')->count())->toEqual(1);
+
+    expect(Category::ofTypes(['product', 'project'])->count())->toEqual(1);
 });
 
 test('category can be updated', function () {

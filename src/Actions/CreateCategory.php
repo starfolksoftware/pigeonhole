@@ -9,7 +9,7 @@ use StarfolkSoftware\Pigeonhole\Pigeonhole;
 class CreateCategory implements CreatesCategories
 {
     /**
-     * Create a new tax.
+     * Create a new category.
      *
      * @param  mixed  $user
      * @param  array  $data
@@ -28,10 +28,12 @@ class CreateCategory implements CreatesCategories
 
         Validator::make($data, [
             'name' => 'required|string|max:255',
+            'type' => 'nullable|string|max:255',
         ])->validateWithBag('createCategory');
 
         $fields = collect($data)->only([
             'name',
+            'type',
         ])->toArray();
 
         return Pigeonhole::$supportsTeams ?

@@ -7,12 +7,12 @@ use StarfolkSoftware\Pigeonhole\Category;
 interface UpdatesCategories
 {
     /**
-     * Update an existing tax.
+     * Update an existing category.
      *
      * @param  mixed  $user
-     * @param  \StarfolkSoftware\Pigeonhole\Category  $tax
+     * @param  \StarfolkSoftware\Pigeonhole\Category  $category
      * @param  array  $data
      * @return \StarfolkSoftware\Pigeonhole\Category
      */
-    public function __invoke($user, Category $tax, array $data);
+    public function __invoke($user, Category $category, array $data);
 }
