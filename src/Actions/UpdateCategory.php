@@ -35,7 +35,7 @@ class UpdateCategory implements UpdatesCategories
 
         $category->update(collect($data)->only([
             'name',
-            'type'
+            'type',
         ])->toArray());
 
         return $category->refresh();
