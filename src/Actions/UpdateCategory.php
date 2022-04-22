@@ -30,10 +30,12 @@ class UpdateCategory implements UpdatesCategories
 
         Validator::make($data, [
             'name' => 'required|string|max:255',
+            'type' => 'nullable|string|max:255',
         ])->validateWithBag('updateCategory');
 
         $category->update(collect($data)->only([
             'name',
+            'type',
         ])->toArray());
 
         return $category->refresh();
