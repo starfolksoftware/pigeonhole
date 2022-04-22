@@ -2,6 +2,14 @@
 
 All notable changes to `pigeonhole` will be documented in this file.
 
+## v1.1.2 - 2022-04-22
+
+## What's Changed
+
+- fix: unable to update category type field by @frknasir in https://github.com/starfolksoftware/pigeonhole/pull/3
+
+**Full Changelog**: https://github.com/starfolksoftware/pigeonhole/compare/v1.1.0...v1.1.2
+
 ## v1.1.0 - 2022-04-21
 
 ## What's Changed
