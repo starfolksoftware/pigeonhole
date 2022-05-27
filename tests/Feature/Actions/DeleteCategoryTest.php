@@ -1,11 +1,13 @@
 <?php
 
-use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories;
+use StarfolkSoftware\Pigeonhole\Pigeonhole;
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {
-    \StarfolkSoftware\Pigeonhole\Pigeonhole::supportsTeams(false);
+    Pigeonhole::supportsTeams(false);
+    Pigeonhole::useCategoryModel(MocksCategory::class);
 });
 
 it('can delete a category', function () {
@@ -13,9 +15,9 @@ it('can delete a category', function () {
 
     $user = TestUser::first();
 
-    $category = Category::factory()->create();
+    $category = Pigeonhole::newCategoryModel()->factory()->create();
 
     $deletesCategories($user, $category);
 
-    expect(Category::count())->toEqual(0);
+    expect(Pigeonhole::newCategoryModel()->count())->toEqual(0);
 });

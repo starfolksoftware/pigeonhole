@@ -4,6 +4,8 @@ namespace StarfolkSoftware\Pigeonhole\Actions;
 
 use Illuminate\Support\Facades\Validator;
 use StarfolkSoftware\Pigeonhole\Contracts\CreatesCategories;
+use StarfolkSoftware\Pigeonhole\Events\CategoryCreated;
+use StarfolkSoftware\Pigeonhole\Events\CreatingCategory;
 use StarfolkSoftware\Pigeonhole\Pigeonhole;
 
 class CreateCategory implements CreatesCategories
@@ -18,13 +20,7 @@ class CreateCategory implements CreatesCategories
      */
     public function __invoke($user, array $data, $teamId = null)
     {
-        if (is_callable(Pigeonhole::$validateCategoryCreation)) {
-            call_user_func(
-                Pigeonhole::$validateCategoryCreation,
-                $user,
-                $data
-            );
-        }
+        event(new CreatingCategory(user: $user, data: $data));
 
         Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -36,8 +32,12 @@ class CreateCategory implements CreatesCategories
             'type',
         ])->toArray();
 
-        return Pigeonhole::$supportsTeams ?
+        $category = Pigeonhole::$supportsTeams ?
             Pigeonhole::findTeamByIdOrFail($teamId)->categories()->create($fields) :
             Pigeonhole::newCategoryModel()->create($fields);
+
+        event(new CategoryCreated(category: $category));
+
+        return $category;
     }
 }

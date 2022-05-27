@@ -5,7 +5,8 @@ namespace StarfolkSoftware\Pigeonhole\Actions;
 use Illuminate\Support\Facades\Validator;
 use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
-use StarfolkSoftware\Pigeonhole\Pigeonhole;
+use StarfolkSoftware\Pigeonhole\Events\CategoryUpdated;
+use StarfolkSoftware\Pigeonhole\Events\UpdatingCategory;
 
 class UpdateCategory implements UpdatesCategories
 {
@@ -13,20 +14,13 @@ class UpdateCategory implements UpdatesCategories
      * Update a category.
      *
      * @param  mixed  $user
-     * @param  \StarfolkSoftware\Pigeonhole\Category  $category
+     * @param  mixed  $category
      * @param  array  $data
-     * @return \StarfolkSoftware\Pigeonhole\Category
+     * @return mixed
      */
-    public function __invoke($user, Category $category, array $data)
+    public function __invoke($user, $category, array $data)
     {
-        if (is_callable(Pigeonhole::$validateCategoryCreation)) {
-            call_user_func(
-                Pigeonhole::$validateCategoryUpdate,
-                $user,
-                $category,
-                $data
-            );
-        }
+        event(new UpdatingCategory(user: $user, category: $category, data: $data));
 
         Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -38,6 +32,10 @@ class UpdateCategory implements UpdatesCategories
             'type',
         ])->toArray());
 
-        return $category->refresh();
+        $category->refresh();
+
+        event(new CategoryUpdated(category: $category));
+
+        return $category;
     }
 }

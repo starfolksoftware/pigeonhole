@@ -1,14 +1,16 @@
 <?php
 
-use StarfolkSoftware\Pigeonhole\Category;
+use StarfolkSoftware\Pigeonhole\Pigeonhole;
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestProduct;
 
 beforeAll(function () {
-    \StarfolkSoftware\Pigeonhole\Pigeonhole::supportsTeams(false);
+    Pigeonhole::supportsTeams(false);
+    Pigeonhole::useCategoryModel(MocksCategory::class);
 });
 
 it('can sync category to a model', function () {
-    $category = Category::factory()->create();
+    $category = Pigeonhole::newCategoryModel()->factory()->create();
 
     list($product) = TestProduct::factory()->count(5)->create();
 
@@ -33,7 +35,7 @@ it('can sync category to a model', function () {
 });
 
 it('can attach and detach category to a model', function () {
-    list($category1, $category2, $category3) = Category::factory()->count(3)->create();
+    list($category1, $category2, $category3) = Pigeonhole::newCategoryModel()->factory()->count(3)->create();
 
     list($product) = TestProduct::factory()->count(5)->create();
 

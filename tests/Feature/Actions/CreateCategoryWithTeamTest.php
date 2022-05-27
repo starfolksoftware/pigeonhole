@@ -2,11 +2,13 @@
 
 use StarfolkSoftware\Pigeonhole\Contracts\CreatesCategories;
 use StarfolkSoftware\Pigeonhole\Pigeonhole;
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TeamModel;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {
     Pigeonhole::supportsTeams(false);
+    Pigeonhole::useCategoryModel(MocksCategory::class);
 });
 
 it('can create a category with team support', function () {

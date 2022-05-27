@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
 use StarfolkSoftware\Pigeonhole\Actions\CreateCategory;
 use StarfolkSoftware\Pigeonhole\Actions\DeleteCategory;
@@ -32,5 +33,7 @@ class PigeonholeServiceProvider extends ServiceProvider
         Pigeonhole::updateCategoriesUsing(UpdateCategory::class);
 
         Pigeonhole::deleteCategoriesUsing(DeleteCategory::class);
+
+        Pigeonhole::useCategoryModel(Category::class);
     }
 }

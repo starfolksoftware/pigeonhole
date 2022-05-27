@@ -27,7 +27,7 @@ final class Pigeonhole
      *
      * @var string
      */
-    public static $categoryModel = 'StarfolkSoftware\\Pigeonhole\\Category';
+    public static $categoryModel = 'App\\Models\\Category';
 
     /**
      * Indicates if Pigeonhole should support teams.
@@ -42,27 +42,6 @@ final class Pigeonhole
      * @var string
      */
     public static $teamModel;
-
-    /**
-     * The callback to perform additional validation when creating new category.
-     *
-     * @var callable
-     */
-    public static $validateCategoryCreation;
-
-    /**
-     * The callback to perform additional validation when updating a category.
-     *
-     * @var callable
-     */
-    public static $validateCategoryUpdate;
-
-    /**
-     * The callback to perform additional validation when deleting a category.
-     *
-     * @var callable
-     */
-    public static $validateCategoryDeletion;
 
     /**
      * Get the name of the category model used by the application.
@@ -157,17 +136,6 @@ final class Pigeonhole
     }
 
     /**
-     * Register a class / callback that should be used to validate category creation.
-     *
-     * @param  callable  $callback
-     * @return void
-     */
-    public static function validateCategoryCreationUsing(callable $callback)
-    {
-        static::$validateCategoryCreation = $callback;
-    }
-
-    /**
      * Register a class / callback that should be used to update Categories.
      *
      * @param  string  $class
@@ -179,17 +147,6 @@ final class Pigeonhole
     }
 
     /**
-     * Register a class / callback that should be used to validate category update.
-     *
-     * @param  callable  $callback
-     * @return void
-     */
-    public static function validateCategoryUpdateUsing(callable $callback)
-    {
-        static::$validateCategoryUpdate = $callback;
-    }
-
-    /**
      * Register a class / callback that should be used to delete Categories.
      *
      * @param  string  $class
@@ -198,17 +155,6 @@ final class Pigeonhole
     public static function deleteCategoriesUsing(string $class)
     {
         app()->singleton(DeletesCategories::class, $class);
-    }
-
-    /**
-     * Register a class / callback that should be used to validate category deletion.
-     *
-     * @param  callable  $callback
-     * @return void
-     */
-    public static function validateCategoryDeletionUsing(callable $callback)
-    {
-        static::$validateCategoryDeletion = $callback;
     }
 
     /**
