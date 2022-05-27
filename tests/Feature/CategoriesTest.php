@@ -1,10 +1,12 @@
 <?php
 
-use StarfolkSoftware\Pigeonhole\Category;
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
+use StarfolkSoftware\Pigeonhole\Pigeonhole;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {
-    \StarfolkSoftware\Pigeonhole\Pigeonhole::supportsTeams(false);
+    Pigeonhole::supportsTeams(false);
+    Pigeonhole::useCategoryModel(MocksCategory::class);
 });
 
 test('category can be created', function () {
@@ -23,17 +25,17 @@ test('category can be created', function () {
         'type' => 'product',
     ]);
 
-    expect(Category::count())->toEqual(1);
+    expect(Pigeonhole::newCategoryModel()->count())->toEqual(1);
 
-    expect(Category::ofType('product')->count())->toEqual(1);
+    expect(Pigeonhole::newCategoryModel()->ofType('product')->count())->toEqual(1);
 
-    expect(Category::ofTypes(['product', 'project'])->count())->toEqual(1);
+    expect(Pigeonhole::newCategoryModel()->ofTypes(['product', 'project'])->count())->toEqual(1);
 });
 
 test('category can be updated', function () {
     $user = TestUser::first();
 
-    $category = Category::factory()->create();
+    $category = Pigeonhole::newCategoryModel()->factory()->create();
 
     $response = actingAs($user)->put(route('categories.update', $category), [
         'name' => 'Category',
@@ -50,7 +52,7 @@ test('category can be updated', function () {
 test('category can be deleted', function () {
     $user = TestUser::first();
 
-    $category = Category::factory()->create();
+    $category = Pigeonhole::newCategoryModel()->factory()->create();
 
     $response = actingAs($user)->delete(route('categories.destroy', $category), [
         'redirect' => '/redirect/path',
@@ -58,5 +60,5 @@ test('category can be deleted', function () {
 
     $response->assertRedirect('/redirect/path');
 
-    expect(Category::count())->toEqual(0);
+    expect(Pigeonhole::newCategoryModel()->count())->toEqual(0);
 });

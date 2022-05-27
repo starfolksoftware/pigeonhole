@@ -31,12 +31,14 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \StarfolkSoftware\Pigeonhole\Category  $category
+     * @param  mixed  $category
      * @param  \StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories  $updatesCategories
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Category $category, UpdatesCategories $updatesCategories)
+    public function update($category, UpdatesCategories $updatesCategories)
     {
+        $category = Pigeonhole::newCategoryModel()->findOrFail($category);
+
         $category = $updatesCategories(
             request()->user(),
             $category,
@@ -51,12 +53,14 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \StarfolkSoftware\Pigeonhole\Category  $category
+     * @param  mixed  $category
      * @param  \StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories  $deletesCategories
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Category $category, DeletesCategories $deletesCategories)
+    public function destroy($category, DeletesCategories $deletesCategories)
     {
+        $category = Pigeonhole::newCategoryModel()->findOrFail($category);
+        
         $deletesCategories(
             request()->user(),
             $category

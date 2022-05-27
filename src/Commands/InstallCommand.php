@@ -22,6 +22,9 @@ class InstallCommand extends Command
         $this->callSilent('vendor:publish', ['--tag' => 'pigeonhole-config', '--force' => true]);
         $this->callSilent('vendor:publish', ['--tag' => 'pigeonhole-migrations', '--force' => true]);
 
+        // Models...
+        copy(__DIR__.'/../../stubs/app/Models/Category.php', app_path('Models/Category.php'));
+
         // Service Providers...
         copy(__DIR__.'/../../stubs/app/Providers/PigeonholeServiceProvider.php', app_path('Providers/PigeonholeServiceProvider.php'));
 

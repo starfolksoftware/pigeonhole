@@ -1,11 +1,14 @@
 <?php
 
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
 use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
+use StarfolkSoftware\Pigeonhole\Pigeonhole;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {
-    \StarfolkSoftware\Pigeonhole\Pigeonhole::supportsTeams(false);
+    Pigeonhole::supportsTeams(false);
+    Pigeonhole::useCategoryModel(MocksCategory::class);
 });
 
 it('can update a category', function () {
@@ -13,7 +16,7 @@ it('can update a category', function () {
 
     $user = TestUser::first();
 
-    $category = Category::factory()->create();
+    $category = Pigeonhole::newCategoryModel()->factory()->create();
 
     $category = $updatesCategories(
         $user,

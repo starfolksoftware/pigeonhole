@@ -1,11 +1,13 @@
 <?php
 
-use StarfolkSoftware\Pigeonhole\Category;
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
 use StarfolkSoftware\Pigeonhole\Contracts\CreatesCategories;
+use StarfolkSoftware\Pigeonhole\Pigeonhole;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {
-    \StarfolkSoftware\Pigeonhole\Pigeonhole::supportsTeams(false);
+    Pigeonhole::supportsTeams(false);
+    Pigeonhole::useCategoryModel(MocksCategory::class);
 });
 
 it('can create a category', function () {
@@ -43,9 +45,9 @@ it('can create a category with type', function () {
     expect($category->refresh())
         ->type->toBe('product');
 
-    expect(Category::ofType('product')->count())
+    expect(Pigeonhole::newCategoryModel()->ofType('product')->count())
         ->toBe(1);
 
-    expect(Category::ofTypes(['product', 'project'])->count())
+    expect(Pigeonhole::newCategoryModel()->ofTypes(['product', 'project'])->count())
         ->toBe(1);
 });
