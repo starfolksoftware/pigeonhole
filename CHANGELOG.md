@@ -2,6 +2,14 @@
 
 All notable changes to `pigeonhole` will be documented in this file.
 
+## v1.6.2 - 2022-05-27
+
+## What's Changed
+
+- feat: category model published to userland by @frknasir in https://github.com/starfolksoftware/pigeonhole/pull/5
+
+**Full Changelog**: https://github.com/starfolksoftware/pigeonhole/compare/v1.1.2...v1.6.2
+
 ## v1.1.2 - 2022-04-22
 
 ## What's Changed
