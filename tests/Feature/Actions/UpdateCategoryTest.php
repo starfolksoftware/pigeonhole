@@ -1,9 +1,8 @@
 <?php
 
-use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
-use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
 use StarfolkSoftware\Pigeonhole\Pigeonhole;
+use StarfolkSoftware\Pigeonhole\Tests\Mocks\Category as MocksCategory;
 use StarfolkSoftware\Pigeonhole\Tests\Mocks\TestUser;
 
 beforeAll(function () {

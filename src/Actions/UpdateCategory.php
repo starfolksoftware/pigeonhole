@@ -7,7 +7,6 @@ use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
 use StarfolkSoftware\Pigeonhole\Events\CategoryUpdated;
 use StarfolkSoftware\Pigeonhole\Events\UpdatingCategory;
-use StarfolkSoftware\Pigeonhole\Pigeonhole;
 
 class UpdateCategory implements UpdatesCategories
 {

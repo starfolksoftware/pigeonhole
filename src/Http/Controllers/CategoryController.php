@@ -2,7 +2,6 @@
 
 namespace StarfolkSoftware\Pigeonhole\Http\Controllers;
 
-use StarfolkSoftware\Pigeonhole\Category;
 use StarfolkSoftware\Pigeonhole\Contracts\CreatesCategories;
 use StarfolkSoftware\Pigeonhole\Contracts\DeletesCategories;
 use StarfolkSoftware\Pigeonhole\Contracts\UpdatesCategories;
@@ -60,7 +59,7 @@ class CategoryController extends Controller
     public function destroy($category, DeletesCategories $deletesCategories)
     {
         $category = Pigeonhole::newCategoryModel()->findOrFail($category);
-        
+
         $deletesCategories(
             request()->user(),
             $category
