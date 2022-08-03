@@ -19,7 +19,8 @@ class CategoryController extends Controller
     {
         $category = $createsCategories(
             request()->user(),
-            request()->all()
+            request()->all(),
+            request('team_id')
         );
 
         return request()->wantsJson() ? response()->json(['category' => $category]) : redirect()->to(
