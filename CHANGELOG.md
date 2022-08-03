@@ -2,6 +2,14 @@
 
 All notable changes to `pigeonhole` will be documented in this file.
 
+## v1.6.3 - 2022-08-03
+
+### What's Changed
+
+- fix: team id not passed when creating category by @frknasir in https://github.com/starfolksoftware/pigeonhole/pull/7
+
+**Full Changelog**: https://github.com/starfolksoftware/pigeonhole/compare/v1.6.2...v1.6.3
+
 ## v1.6.2 - 2022-05-27
 
 ## What's Changed
