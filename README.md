@@ -1,4 +1,4 @@
-# Introduction (WIP)
+# Pigeonhole
 
 A simple and straighforward package to categorize models in your Laravel applications.
 
@@ -8,20 +8,11 @@ You can install the package via composer:
 
 ```bash
 composer require starfolksoftware/pigeonhole
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="pigeonhole-migrations"
+php artisan pigeonhole:install
 php artisan migrate
 ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="pigeonhole-config"
-```
+## Configuration
 
 This is the contents of the published config file:
 
@@ -46,7 +37,50 @@ php artisan vendor:publish --tag="pigeonhole-views"
 ## Usage
 
 ```php
+<?php
 
+namespace App\Models;
+
+use App\Abstracts\Model;
+use StarfolkSoftware\Levy\Taxable;
+use StarfolkSoftware\Pigeonhole\Categorizable;
+
+class Product extends Model
+{
+    use Categorizable;
+}
+
+```
+
+To enable team support:
+
+```php
+// this should be in a service provider
+/**
+ * Bootstrap any application services.
+ *
+ * @return void
+ */
+public function boot()
+{
+    Pigeonhole::supportsTeams();
+}
+```
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use StarfolkSoftware\Levy\TeamHasTaxes;
+use StarfolkSoftware\Pigeonhole\TeamHasCategories;
+use Tithe\HasSubscriptions;
+
+class Team extends JetstreamTeam
+{
+    use TeamHasCategories;
+}
 ```
 
 ## Testing
